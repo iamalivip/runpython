@@ -40,7 +40,7 @@ if j.status_code == 200:
         r = f"ss://{q}#{o['title']}"
 
 
-        data = {"Date":"{datetime.now()}"}  # 示例数据
+        data = {"Date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
         with open("output.json", "w") as f:
             json.dump(data, f)  # 写入 output.json
             
