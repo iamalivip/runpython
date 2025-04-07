@@ -31,8 +31,6 @@ if j.status_code == 200:
     m = f(l, d, e)
 
     n = json.loads(m)
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(current_dir, "output.json")
     for o in n['data']:
 
         p = f"aes-256-cfb:{o['password']}@{o['ip']}:{o['port']}"
@@ -40,8 +38,8 @@ if j.status_code == 200:
         q = base64.b64encode(p.encode('utf-8')).decode('utf-8')
 
         data = f"ss://{q}#{o['title']}"
-        output_path = os.path.join(os.getcwd(), "output.json")
+        output_path = os.path.join(os.getcwd(), "output.txt")
         date = {"Date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-        with open(output_path, "w") as f:
-            json.dump(data+"\p"+data, f)  # 写入 output.json
+        with open(output_path, "w") as file:
+            file.write(data+"\p"+data)
             
