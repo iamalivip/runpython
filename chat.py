@@ -4,6 +4,7 @@ import base64
 import json
 import pyaes
 import binascii
+import os
 from datetime import datetime
 a = 'http://api.skrapp.net/api/serverlist'
 b = {'accept': '/',
@@ -38,9 +39,8 @@ if j.status_code == 200:
         q = base64.b64encode(p.encode('utf-8')).decode('utf-8')
 
         r = f"ss://{q}#{o['title']}"
-
-
+        output_path = os.path.join(os.getcwd(), "output.json")
         data = {"Date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-        with open("output.json", "w") as f:
+        with open(output_path, "w") as f:
             json.dump(data, f)  # 写入 output.json
             
