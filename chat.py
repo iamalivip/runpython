@@ -31,7 +31,8 @@ if j.status_code == 200:
     m = f(l, d, e)
 
     n = json.loads(m)
-
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    output_path = os.path.join(current_dir, "output.json")
     for o in n['data']:
 
         p = f"aes-256-cfb:{o['password']}@{o['ip']}:{o['port']}"
