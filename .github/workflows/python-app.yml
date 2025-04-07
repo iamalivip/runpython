@@ -1,0 +1,26 @@
+name: Run chat.py every 12 hours
+
+on:
+  schedule:
+    # 每隔 12 小时运行一次 (UTC 时间)
+    - cron: '0 */12 * * *'
+  workflow_dispatch:  # 可选: 允许手动触发
+
+jobs:
+  run-chat:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # 使用你需要的 Python 版本
+        
+    - name: Install dependencies (如果有)
+      run: pip install pyaes  # 如果有依赖需要安装
+      
+    - name: Run chat.py
+      run: python chat.py
