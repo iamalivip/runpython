@@ -5,7 +5,6 @@ import json
 import pyaes
 import binascii
 from datetime import datetime
-print(f"Date   : {datetime.today().strftime('%Y-%m-%d')}")
 a = 'http://api.skrapp.net/api/serverlist'
 b = {'accept': '/',
     'accept-language': 'zh-Hans-CN;q=1, en-CN;q=0.9',
@@ -40,4 +39,7 @@ if j.status_code == 200:
 
         r = f"ss://{q}#{o['title']}"
 
-        print(r)
+
+        data = {f"Date   : {datetime.today().strftime('%Y-%m-%d')}"}  # 示例数据
+        with open("output.json", "w") as f:
+        json.dump(data, f)  # 写入 output.json
