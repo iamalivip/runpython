@@ -2,9 +2,8 @@ name: Run chat.py every 12 hours
 
 on:
   schedule:
-    # 每隔 12 小时运行一次 (UTC 时间)
-    - cron: '0 */12 * * *'
-  workflow_dispatch:  # 可选: 允许手动触发
+    - cron: '0 */12 * * *'  # 每12小时运行一次（UTC时间）
+  workflow_dispatch:         # 允许手动触发
 
 jobs:
   run-chat:
@@ -17,10 +16,18 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'  # 使用你需要的 Python 版本
+        python-version: '3.10'  # 明确指定 Python 版本
         
-    - name: Install dependencies (如果有)
-      run: pip install pyaes requests   # 如果有依赖需要安装
-      
+    - name: Install dependencies
+      run: pip install pyaes requests
+        
     - name: Run chat.py
-      run: python chat.py
+      run: |
+        cd "$GITHUB_WORKSPACE"  # 进入仓库根目录
+        python chat.py          # 运行脚本
+        
+    - name: Upload output.json
+      uses: actions/upload-artifact@v3
+      with:
+        name: output-data
+        path: output.json  # 上传生成的文件
