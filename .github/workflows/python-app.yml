@@ -20,7 +20,7 @@ jobs:
         python-version: '3.x'  # 使用你需要的 Python 版本
         
     - name: Install dependencies (如果有)
-      run: pip install pyaes requests  json binascii  # 如果有依赖需要安装
+      run: pip install pyaes requests   # 如果有依赖需要安装
       
     - name: Run chat.py
       run: python chat.py
