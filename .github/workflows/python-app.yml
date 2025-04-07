@@ -26,8 +26,8 @@ jobs:
         cd "$GITHUB_WORKSPACE"  # 进入仓库根目录
         python chat.py          # 运行脚本
         
-    - name: Upload output.json
+    - name: Upload output.txt
       uses: actions/upload-artifact@v4
       with:
         name: output-data
-        path: output.json  # 上传生成的文件
+        path: output.txt  # 上传生成的文件
